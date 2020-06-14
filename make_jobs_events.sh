@@ -19,12 +19,12 @@ OUT_HEIGHTS[0]='100, 1000, 2500, 5000, 10000, 17000'
 REL_HEIGHTS='650, 525, 400'
 
 # template directory:
-TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events
-#TEMPL_DIR=./../templates/events
+#TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events
+TEMPL_DIR=./templates/events
 
 # job running script:
-RUN_SCRIPT=$(dirname $(readlink -f ${0}))/../scripts/run_job.sh
-#RUN_SCRIPT=./../scripts/run_job.sh
+#RUN_SCRIPT=$(dirname $(readlink -f ${0}))/../scripts/run_job.sh
+RUN_SCRIPT=./../scripts/run_job.sh
 
 date_file='maturation_hours.txt'
 
@@ -42,7 +42,8 @@ NUM_JOB_NAMES=$((${#JOBS_NAME[@]} - 1))
 for i in $(seq 0 ${NUM_JOB_NAMES})
 do
   # directory in to which directories will be copied / models will be run:
-  OUT_DIR=$(dirname $(readlink -f ${0}))/${JOBS_NAME[${i}]}
+  #OUT_DIR=$(dirname $(readlink -f ${0}))/${JOBS_NAME[${i}]}
+  OUT_DIR=./${JOBS_NAME[${i}]}
   # make sure OUT_DIR exists:
   mkdir -p ${OUT_DIR}
   
@@ -80,9 +81,9 @@ do
       # run job script:
       \cp ${RUN_SCRIPT} ${RD}/run_job.sh
       # increase run time:
-      sed -i 's|0:20:00|8:00:00|g' ${RD}/run_job.sh
+      #sed -i 's|0:20:00|8:00:00|g' ${RD}/run_job.sh
       # increase memory:
-      sed -i 's|-l h_vmem=16G|-l h_vmem=24G|g' ${RD}/run_job.sh
+      #sed -i 's|-l h_vmem=16G|-l h_vmem=24G|g' ${RD}/run_job.sh
       # make executable:
       chmod 755 ${RD}/run_job.sh
     done
