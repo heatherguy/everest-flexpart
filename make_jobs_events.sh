@@ -19,17 +19,17 @@ OUT_HEIGHTS[0]='100, 1000, 2500, 5000, 10000, 17000'
 REL_HEIGHTS='650, 525, 400'
 
 # template directory:
-TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events_v01
+TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events
+#TEMPL_DIR=./../templates/events
+
 # job running script:
 RUN_SCRIPT=$(dirname $(readlink -f ${0}))/../scripts/run_job.sh
+#RUN_SCRIPT=./../scripts/run_job.sh
 
-# start time (2019-09-25 12:00):
-START_TIME=1569409200
-# end time (2019-09-18 12:00):
-END_TIME=1568804400
-# interval between runs (3 hours):
-RUN_INT=10800
+date_file='maturation_hours.txt'
+
 # run length (3 days):
+
 RUN_LEN=259200
 
 # data type, ei or ea:
@@ -45,23 +45,14 @@ do
   OUT_DIR=$(dirname $(readlink -f ${0}))/${JOBS_NAME[${i}]}
   # make sure OUT_DIR exists:
   mkdir -p ${OUT_DIR}
-  # start time and end time:
-  START=${START_TIME}
-  END=${END_TIME}
-  # loop through start times:
-  while [ ${START} -ge ${END} ]
+  
+  while read p
   do
-    # start date:
-    SD=$(date -d @${START} +%Y%m%d)
-    # start hour:
-    SH=$(date -d @${START} +%H%M%S)
-    # run end time:
-    ET=$((${START} - ${RUN_LEN}))
-    # end date:
-    ED=$(date -d @${ET} +%Y%m%d)
-    # end hour:
-    EH=$(date -d @${ET} +%H%M%S)
-    # for each release height:
+    SD=${p:0:8}
+    SH=${p:8:6}
+    ED=${p:15:9}
+    EH=${p:25:6}
+
     for REL_HEIGHT in ${REL_HEIGHTS}
     do
       # run dir:
@@ -95,7 +86,5 @@ do
       # make executable:
       chmod 755 ${RD}/run_job.sh
     done
-    # increment run start time:
-    START=$((${START} - ${RUN_INT}))
-  done
+  done < $date_file
 done
