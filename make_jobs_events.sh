@@ -20,11 +20,11 @@ REL_HEIGHTS='650 525 400'
 
 # template directory:
 #TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events
-TEMPL_DIR=./templates/events
+TEMPL_DIR=/nobackup/eehgu/everest-flexpart/templates/events
 
 # job running script:
 #RUN_SCRIPT=$(dirname $(readlink -f ${0}))/../scripts/run_job.sh
-RUN_SCRIPT=./scripts/run_job.sh
+RUN_SCRIPT=/nobackup/eehgu/everest-flexpart/scripts/run_job.sh
 
 date_file='maturation_hours.txt'
 
@@ -43,7 +43,7 @@ for i in $(seq 0 ${NUM_JOB_NAMES})
 do
   # directory in to which directories will be copied / models will be run:
   #OUT_DIR=$(dirname $(readlink -f ${0}))/${JOBS_NAME[${i}]}
-  OUT_DIR=./${JOBS_NAME[${i}]}
+  OUT_DIR=/nobackup/eehgu/everest-flexpart/${JOBS_NAME[${i}]}
   # make sure OUT_DIR exists:
   mkdir -p ${OUT_DIR}
   
