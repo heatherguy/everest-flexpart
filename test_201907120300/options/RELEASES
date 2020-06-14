@@ -18,14 +18,14 @@
  ITIME1  =          030000, ! Release start time in UTC HHMISS: HH hours, MI=minutes, SS=seconds
  IDATE2  =        20190712, ! Release end date, same as IDATE1
  ITIME2  =          030000, ! Release end time, same as ITIME1
- LON1    =           86.75, ! Left longitude of release box -180 < LON1 <180
- LON2    =           86.75, ! Right longitude of release box, same as LON1
- LAT1    =           27.85, ! Lower latitude of release box, -90 < LAT1 < 90
- LAT2    =           27.85, ! Upper latitude of release box same format as LAT1
+ LON1    =           86.750, ! Left longitude of release box -180 < LON1 <180
+ LON2    =           86.751, ! Right longitude of release box, same as LON1
+ LAT1    =           27.850, ! Lower latitude of release box, -90 < LAT1 < 90
+ LAT2    =           27.851, ! Upper latitude of release box same format as LAT1
  Z1      =             650, ! Lower height of release box meters/hPa above reference level
  Z2      =             650, ! Upper height of release box meters/hPa above reference level
  ZKIND   =               3, ! Reference level 1=above ground, 2=above sea level, 3 for pressure in hPa
  MASS    =               1, ! Total mass emitted, only relevant for fwd simulations
  PARTS   =           10000, ! Total number of particles to be released
- COMMENT =       "RELEASE", ! Comment, written in the outputfile
+ COMMENT =       "AIRTRACER", ! Comment, written in the outputfile
  /
