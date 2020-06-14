@@ -16,7 +16,7 @@ IND_RECEPTOR[0]='1'
 OUT_HEIGHTS[0]='100, 1000, 2500, 5000, 10000, 17000'
 
 # particle release heights:
-REL_HEIGHTS='650, 525, 400'
+REL_HEIGHTS='650 525 400'
 
 # template directory:
 #TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events
@@ -50,8 +50,8 @@ do
   while read p
   do
     SD=${p:0:8}
-    SH=${p:8:6}
-    ED=${p:15:9}
+    SH=${p:9:6}
+    ED=${p:16:8}
     EH=${p:25:6}
 
     for REL_HEIGHT in ${REL_HEIGHTS}
