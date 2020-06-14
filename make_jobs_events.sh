@@ -24,7 +24,7 @@ TEMPL_DIR=./templates/events
 
 # job running script:
 #RUN_SCRIPT=$(dirname $(readlink -f ${0}))/../scripts/run_job.sh
-RUN_SCRIPT=./../scripts/run_job.sh
+RUN_SCRIPT=./scripts/run_job.sh
 
 date_file='maturation_hours.txt'
 
