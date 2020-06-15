@@ -32,6 +32,8 @@ rcParams['axes.titlepad'] = 22
 rcParams['xtick.major.pad']='8'
 rcParams['ytick.major.pad']='8'
 
+
+run_length = 72 # hours
 sum_lat = 27.85
 sum_lon = 86.75 
 levels = [0.1,0.3,0.8,2,6,20,50,150,400]
@@ -47,7 +49,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
-end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
+#end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
+end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
 pressures=[650,525,400]
 
