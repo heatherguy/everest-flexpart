@@ -46,8 +46,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 #base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
 base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
-release_times = list(set([x[48:62] for x in glob.glob(base_dir +'20*')]))
-end_times = list(set([x[63:77] for x in glob.glob(base_dir +'20*')]))
+release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
+end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 
 pressures=[650,525,400]
 
