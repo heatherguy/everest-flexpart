@@ -45,26 +45,31 @@ pressures=[650,525,400]
 for i in range(0,len(release_times)):
     rt = release_times[i]
     et = end_times[i]
+    print(rt)
 
     tf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/trajectories.txt'
     tf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,525) + 'output/trajectories.txt'
     tf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,650) + 'output/trajectories.txt'
     
-    # Extract mean trajectories
-    dat400 = pd.read_fwf(tf_400,skiprows=6,header=None,widths=widths)
-    del dat400[0]
-    df400 = dat400[dat400.columns[0:len(col_headers)]]
-    df400.columns = col_headers
+    try:
+        # Extract mean trajectories
+        dat400 = pd.read_fwf(tf_400,skiprows=6,header=None,widths=widths)
+        del dat400[0]
+        df400 = dat400[dat400.columns[0:len(col_headers)]]
+        df400.columns = col_headers
     
-    dat525 = pd.read_fwf(tf_525,skiprows=6,header=None,widths=widths)
-    del dat525[0]
-    df525 = dat525[dat525.columns[0:len(col_headers)]]
-    df525.columns = col_headers
+        dat525 = pd.read_fwf(tf_525,skiprows=6,header=None,widths=widths)
+        del dat525[0]
+        df525 = dat525[dat525.columns[0:len(col_headers)]]
+        df525.columns = col_headers
     
-    dat650 = pd.read_fwf(tf_650,skiprows=6,header=None,widths=widths)
-    del dat650[0]
-    df650 = dat650[dat650.columns[0:len(col_headers)]]
-    df650.columns = col_headers
+        dat650 = pd.read_fwf(tf_650,skiprows=6,header=None,widths=widths)
+        del dat650[0]
+        df650 = dat650[dat650.columns[0:len(col_headers)]]
+        df650.columns = col_headers
+    except:
+        print('No trajectories for %s'%rt)
+        continue
     
     
     
