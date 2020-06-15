@@ -31,10 +31,14 @@ widths = mean_widths + cluster_widths * nclusters
 sc = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 # Get event files
-base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+#base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+base_dir='/nobackup/eehgu/everest-flexpart/events/'
+
 
 release_times = list(set([x[48:62] for x in glob.glob(base_dir +'20*')]))
-end_times = list(set([x[63:77] for x in glob.glob(base_dir +'20*')]))
+#end_times = list(set([x[63:77] for x in glob.glob(base_dir +'20*')]))
+end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
+
 
 pressures=[650,525,400]
 
@@ -92,6 +96,7 @@ for i in range(0,len(release_times)):
 
     # Save plot
     save_loc = base_dir + 'out_figures/%s_altitude.png'%rt 
+    print('Saving %s altitude plot'%rt)
     fig.savefig(save_loc)
 
     plt.close(fig)

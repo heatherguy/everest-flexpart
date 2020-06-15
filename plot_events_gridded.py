@@ -66,9 +66,13 @@ for i in range(0,len(release_times)):
     gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,650) + 'output/grid_time_%s.nc'%rt
     
     # load netcdf data using iris:
-    cube400 = iris.load_cube(gf_400, 'spec001_mr')
-    cube525 = iris.load_cube(gf_525, 'spec001_mr')
-    cube650 = iris.load_cube(gf_650, 'spec001_mr')
+    try:
+        cube400 = iris.load_cube(gf_400, 'spec001_mr')
+        cube525 = iris.load_cube(gf_525, 'spec001_mr')
+        cube650 = iris.load_cube(gf_650, 'spec001_mr')
+    except:
+        print('cant find output file, %s'%rt)
+        continue
     
     # get lat and lon coordinates:
     lat_coord = cube400.coord('grid_latitude')
