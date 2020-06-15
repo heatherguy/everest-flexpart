@@ -14,6 +14,9 @@ import datetime as dt
 import glob as glob
 import os
 import iris
+import warnings
+warnings.filterwarnings("ignore")
+
 
 import matplotlib.ticker as mticker
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
