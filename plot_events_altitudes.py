@@ -35,7 +35,7 @@ sc = plt.rcParams['axes.prop_cycle'].by_key()['color']
 base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 
-release_times = list(set([x[48:62] for x in glob.glob(base_dir +'20*')]))
+release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[63:77] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
