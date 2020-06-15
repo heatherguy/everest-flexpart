@@ -43,7 +43,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 
 
 # Get event files
-base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+#base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 release_times = list(set([x[48:62] for x in glob.glob(base_dir +'20*')]))
 end_times = list(set([x[63:77] for x in glob.glob(base_dir +'20*')]))
@@ -174,6 +175,7 @@ for i in range(0,len(release_times)):
 
     # Save plot
     save_loc = base_dir + 'out_figures/%s_gridded.png'%rt 
+    print('Saving %s'%rt)
     fig.savefig(save_loc)
 
     plt.close(fig)

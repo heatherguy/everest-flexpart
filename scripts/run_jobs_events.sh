@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ALL_DIRS=$(\ls -1d events/*)
+ALL_DIRS=$(\ls -1d /nobackup/eehgu/everest-flexpart/events/*)
 
 for DIR in ${ALL_DIRS}
 do
