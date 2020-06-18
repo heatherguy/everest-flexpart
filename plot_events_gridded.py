@@ -64,7 +64,7 @@ for i in range(0,len(release_times)):
     gf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/grid_time_%s.nc'%rt
     gf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,525) + 'output/grid_time_%s.nc'%rt
     gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,650) + 'output/grid_time_%s.nc'%rt
-    
+        
     # load netcdf data using iris:
     try:
         cube400 = iris.load_cube(gf_400, 'spec001_mr')
