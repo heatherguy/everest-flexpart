@@ -90,27 +90,30 @@ for i in range(0,len(release_times)):
     height_vals = height_coord.points
     
     # sum the values:
-    sumcube = cube[0, 0, :, :].collapsed('time', iris.analysis.SUM)
-    sumcube = sumcube.collapsed('height', iris.analysis.SUM)
+    try:
+        sumcube = cube[0, 0, :, :].collapsed('time', iris.analysis.SUM)
+        sumcube = sumcube.collapsed('height', iris.analysis.SUM)
 
-    # mask any 0 values:
-    sumcube_mask = np.ones(sumcube.shape)
-    sumcube_mask[sumcube.data > 0] = 0
-    sumcube.data = np.ma.array(sumcube.data)
-    sumcube.data.mask = sumcube_mask
+        # mask any 0 values:
+        sumcube_mask = np.ones(sumcube.shape)
+        sumcube_mask[sumcube.data > 0] = 0
+        sumcube.data = np.ma.array(sumcube.data)
+        sumcube.data.mask = sumcube_mask
     
-    temp=sumcube.data
-    all_cubes.append(temp)
+        temp=sumcube.data
+        all_cubes.append(temp)
     
-    if rt[4:6] in ['06','07','08','09']:
-        JJAS_cubes.append(temp)
-    elif rt[4:6] in ['09','10']:
-        SO_cubes.append(temp)
-    elif rt[4:6] in ['12','01','02']:
-        DJF_cubes.append(temp)
-    elif rt[4:6] in ['03']:
-        M_cubes.append(temp)
-        
+        if rt[4:6] in ['06','07','08','09']:
+            JJAS_cubes.append(temp)
+        elif rt[4:6] in ['09','10']:
+            SO_cubes.append(temp)
+        elif rt[4:6] in ['12','01','02']:
+            DJF_cubes.append(temp)
+        elif rt[4:6] in ['03']:
+            M_cubes.append(temp)
+    except:
+        print('Cant parse %s, empty cube?'%rt)
+        continue    
 
 
 
