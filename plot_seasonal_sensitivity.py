@@ -41,7 +41,7 @@ sum_lat = 27.85
 sum_lon = 86.75 
 
 #levels = [0.1,0.3,0.8,2,6,20,50,150,400]
-levels = [0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5, 10, 25, 50, 100]
+levels = [0.001,0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5, 10, 25, 50, 100]
 # create a color map for these values, based on the number of values:
 col_map = [plt.cm.jet((i / len(levels))) for i in range(len(levels))]
 land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
@@ -285,6 +285,47 @@ fig.tight_layout()
 # Save plot
 save_loc = base_dir + 'out_figures/DJF_gridded.png' 
 print('Saving DJF')
+fig.savefig(save_loc)
+
+plt.close(fig)
+fig.clf()
+
+
+# Make figure - M
+
+# Sum all plumes
+summ = np.sum(M_cubes,axis=0)
+#convert to percentage of max
+summ = (summ / np.max(summ)) * 100
+
+fig = plt.figure(figsize=[15, 10])
+
+ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
+ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.add_feature(land_50m)
+ax1.coastlines(resolution='50m',zorder=20)
+ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
+
+gl1 = ax1.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,linewidth=1, color='gray', alpha=0.5, linestyle='--')
+gl1.xlabels_top = False
+gl1.ylabels_right = False
+gl1.xlocator = mticker.FixedLocator([50,60,70,80,90,100,110])
+gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
+gl1.xformatter = LONGITUDE_FORMATTER
+gl1.yformatter = LATITUDE_FORMATTER
+
+contour_plot1 = ax1.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
+cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+cb1.ax.set_ylabel('Emission sensitivity (%)')
+ax1.set_title('M events, n=%s'%len(DJF_cubes))
+
+fig.tight_layout()
+
+
+# Save plot
+save_loc = base_dir + 'out_figures/M_gridded.png' 
+print('Saving M')
 fig.savefig(save_loc)
 
 plt.close(fig)

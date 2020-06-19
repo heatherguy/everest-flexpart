@@ -39,7 +39,10 @@ rcParams['ytick.major.pad']='8'
 run_length = 72 # hours
 sum_lat = 27.85
 sum_lon = 86.75 
-levels = [0.1,0.3,0.8,2,6,20,50,150,400]
+#levels = [0.1,0.3,0.8,2,6,20,50,150,400]
+levels = [0.001,0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5, 10, 25, 50, 100]
+
+
 # create a color map for these values, based on the number of values:
 col_map = [plt.cm.jet((i / len(levels))) for i in range(len(levels))]
 land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
@@ -101,24 +104,26 @@ for i in range(0,len(release_times)):
     sum_400_mask[sum_400.data > 0] = 0
     sum_400.data = np.ma.array(sum_400.data)
     sum_400.data.mask = sum_400_mask
+    sum_400 = (sum_400.data / np.max(sum_400.data)) * 100
     
     sum_525_mask = np.ones(sum_525.shape)
     sum_525_mask[sum_525.data > 0] = 0
     sum_525.data = np.ma.array(sum_525.data)
     sum_525.data.mask = sum_525_mask
+    sum_525 = (sum_525.data / np.max(sum_525.data)) * 100
     
     sum_650_mask = np.ones(sum_650.shape)
     sum_650_mask[sum_650.data > 0] = 0
     sum_650.data = np.ma.array(sum_650.data)
     sum_650.data.mask = sum_650_mask
-
+    sum_650 = (sum_650.data / np.max(sum_650.data)) * 100
 
     # Make figure
 
     fig = plt.figure(figsize=[40, 10])
 
     ax1 = plt.subplot(1, 3, 1, projection=ccrs.Mercator(central_longitude=86.9))
-    ax1.set_extent([sum_lon-20, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+    ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
     ax1.add_feature(land_50m)
     ax1.coastlines(resolution='50m',zorder=20)
     ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -131,10 +136,10 @@ for i in range(0,len(release_times)):
     gl1.xformatter = LONGITUDE_FORMATTER
     gl1.yformatter = LATITUDE_FORMATTER
 
-    contour_plot1 = ax1.contourf(lon_vals, lat_vals,sum_650.data,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+    contour_plot1 = ax1.contourf(lon_vals, lat_vals,sum_650,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-    cb1.ax.set_ylabel('Emission sensitivity (s)')
+    cb1.ax.set_ylabel('Emission sensitivity (%)')
     ax1.set_title('%s: 650 hPa release'%rt)
 
 
@@ -152,10 +157,10 @@ for i in range(0,len(release_times)):
     gl2.xformatter = LONGITUDE_FORMATTER
     gl2.yformatter = LATITUDE_FORMATTER
 
-    contour_plot2 = ax2.contourf(lon_vals, lat_vals,sum_525.data,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+    contour_plot2 = ax2.contourf(lon_vals, lat_vals,sum_525,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb2 = plt.colorbar(contour_plot2, ax=ax2, shrink=0.8)
-    cb2.ax.set_ylabel('Emission sensitivity (s)')
+    cb2.ax.set_ylabel('Emission sensitivity (%)')
     ax2.set_title('%s: 525 hPa release'%rt)
 
 
@@ -173,10 +178,10 @@ for i in range(0,len(release_times)):
     gl3.xformatter = LONGITUDE_FORMATTER
     gl3.yformatter = LATITUDE_FORMATTER
 
-    contour_plot3 = ax3.contourf(lon_vals, lat_vals,sum_400.data,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+    contour_plot3 = ax3.contourf(lon_vals, lat_vals,sum_400,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb3 = plt.colorbar(contour_plot3, ax=ax3, shrink=0.8)
-    cb3.ax.set_ylabel('Emission sensitivity (s)')
+    cb3.ax.set_ylabel('Emission sensitivity (%)')
     ax3.set_title('%s: 400 hPa release'%rt)
 
     fig.tight_layout()
