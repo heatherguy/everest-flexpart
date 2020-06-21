@@ -144,7 +144,7 @@ for i in range(0,len(release_times)):
 
 
     ax2 = plt.subplot(1, 3, 2, projection=ccrs.Mercator(central_longitude=86.9))
-    ax2.set_extent([sum_lon-20, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+    ax2.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
     ax2.add_feature(land_50m)
     ax2.coastlines(resolution='50m',zorder=20)
     ax2.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -165,7 +165,7 @@ for i in range(0,len(release_times)):
 
 
     ax3 = plt.subplot(1, 3, 3, projection=ccrs.Mercator(central_longitude=86.9))
-    ax3.set_extent([sum_lon-20, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+    ax3.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
     ax3.add_feature(land_50m)
     ax3.coastlines(resolution='50m',zorder=20)
     ax3.add_feature(cfeature.BORDERS.with_scale('50m'))
