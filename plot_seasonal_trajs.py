@@ -102,7 +102,7 @@ for i in range(0,len(release_times)):
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -121,7 +121,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(all_cubes)):
     mean_df=all_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=3,color='k')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
@@ -143,7 +143,7 @@ fig.clf()
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -162,11 +162,11 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(JJAS_cubes)):
     mean_df=JJAS_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=3,color='k')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('JJAS, n=%s'%len(all_cubes))
+ax1.set_title('JJAS, n=%s'%len(JJAS_cubes))
 
 fig.tight_layout()
 
@@ -185,7 +185,7 @@ fig.clf()
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -204,11 +204,11 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(DJF_cubes)):
     mean_df=DJF_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=3,color='k')#alpha=0.8)
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')#alpha=0.8)
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('DJF, n=%s'%len(all_cubes))
+ax1.set_title('DJF, n=%s'%len(DJF_cubes))
 
 fig.tight_layout()
 
@@ -227,7 +227,7 @@ fig.clf()
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -246,11 +246,11 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(SO_cubes)):
     mean_df=SO_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=3,color='k')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('SO, n=%s'%len(all_cubes))
+ax1.set_title('SO, n=%s'%len(SO_cubes))
 
 fig.tight_layout()
 
@@ -269,7 +269,7 @@ fig.clf()
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -288,11 +288,11 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(M_cubes)):
     mean_df=M_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,alpha=0.8)
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('M, n=%s'%len(all_cubes))
+ax1.set_title('M, n=%s'%len(M_cubes))
 
 fig.tight_layout()
 

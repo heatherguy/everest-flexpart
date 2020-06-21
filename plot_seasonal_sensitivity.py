@@ -127,7 +127,7 @@ sumall = (sumall / np.max(sumall)) * 100
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -172,7 +172,7 @@ sumjjas = (sumjjas / np.max(sumjjas)) * 100
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -216,7 +216,7 @@ sumso = (sumso / np.max(sumso)) * 100
 fig = plt.figure(figsize=[10, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -260,7 +260,7 @@ sumdjf = (sumdjf / np.max(sumdjf)) * 100
 fig = plt.figure(figsize=[15, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -301,7 +301,7 @@ summ = (summ / np.max(summ)) * 100
 fig = plt.figure(figsize=[15, 10])
 
 ax1 = plt.subplot(1, 1, 1, projection=ccrs.Mercator(central_longitude=86.9))
-ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
 ax1.add_feature(land_50m)
 ax1.coastlines(resolution='50m',zorder=20)
 ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
@@ -318,7 +318,7 @@ contour_plot1 = ax1.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('M events, n=%s'%len(DJF_cubes))
+ax1.set_title('M events, n=%s'%len(M_cubes))
 
 fig.tight_layout()
 

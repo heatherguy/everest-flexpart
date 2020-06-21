@@ -123,7 +123,7 @@ for i in range(0,len(release_times)):
     fig = plt.figure(figsize=[40, 10])
 
     ax1 = plt.subplot(1, 3, 1, projection=ccrs.Mercator(central_longitude=86.9))
-    ax1.set_extent([sum_lon-30, sum_lon+20, sum_lat-15, sum_lat + 15], ccrs.PlateCarree())
+    ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
     ax1.add_feature(land_50m)
     ax1.coastlines(resolution='50m',zorder=20)
     ax1.add_feature(cfeature.BORDERS.with_scale('50m'))
