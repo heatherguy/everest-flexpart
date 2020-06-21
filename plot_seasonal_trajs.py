@@ -53,8 +53,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 
 
 # Get event files
-base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-#base_dir='/nobackup/eehgu/everest-flexpart/events/'
+#base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
