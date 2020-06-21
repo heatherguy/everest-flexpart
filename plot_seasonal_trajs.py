@@ -121,7 +121,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(all_cubes)):
     mean_df=all_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
@@ -162,7 +162,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(JJAS_cubes)):
     mean_df=JJAS_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
@@ -204,7 +204,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(DJF_cubes)):
     mean_df=DJF_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')#alpha=0.8)
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')#alpha=0.8)
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
@@ -246,7 +246,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(SO_cubes)):
     mean_df=SO_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
@@ -288,7 +288,7 @@ ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zord
 # Plot retroplume centroid (mean trajectory)
 for i in range(0,len(M_cubes)):
     mean_df=M_cubes[i]
-    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=2,c='b')
+    ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')

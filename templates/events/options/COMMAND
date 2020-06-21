@@ -10,8 +10,8 @@
  IBTIME=           XXSTXX, ! Start time of the simulation   ; HHMISS: HH=hours, MI=min, SS=sec; UTC
  IEDATE=         XXXEDXXX, ! End date of the simulation     ; same format as IBDATE 
  IETIME=           XXETXX, ! End  time of the simulation    ; same format as IBTIME
- LOUTSTEP=          10800, ! Interval of model output; average concentrations calculated every LOUTSTEP (s)  
- LOUTAVER=          10800, ! Interval of output averaging (s)
+ LOUTSTEP=           3600, ! Interval of model output; average concentrations calculated every LOUTSTEP (s)  
+ LOUTAVER=           3600, ! Interval of output averaging (s)
  LOUTSAMPLE=          300, ! Interval of output sampling  (s), higher stat. accuracy with shorter intervals
  ITSPLIT=        99999999, ! Interval of particle splitting (s) 
  LSYNCTIME=           300, ! All processes are synchronized to this time interval (s)
