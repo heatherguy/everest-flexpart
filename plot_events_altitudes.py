@@ -82,21 +82,22 @@ for i in range(0,len(release_times)):
     #ax1.plot(-mean_df['time'].astype(int)/60/60/24,mean_df['meanTropo'],label='Tropopause',lw=1,ls=':',c='k')
     #ax1.fill_between(-mean_df['time'].astype(int)/60/60/24,0,df400['meanTopo'],label='Topography',fc='darkgreen')
 
-    ax1.plot(-df400['time'].astype(int)/60/60/24,df400['meanZ'],label='400 hPa release',lw=6,c=sc[0])
-    ax1.plot(-df525['time'].astype(int)/60/60/24,df525['meanZ'],label='525 hPa release',lw=6,c=sc[1])
-    ax1.plot(-df650['time'].astype(int)/60/60/24,df650['meanZ'],label='650 hPa release',lw=6,c=sc[2])
+    ax1.plot(-df400['time'].astype(int)/60/60,df400['meanZ'],label='400 hPa release',lw=6,c=sc[0])
+    ax1.plot(-df525['time'].astype(int)/60/60,df525['meanZ'],label='525 hPa release',lw=6,c=sc[1])
+    ax1.plot(-df650['time'].astype(int)/60/60,df650['meanZ'],label='650 hPa release',lw=6,c=sc[2])
     
-    ax1.plot(-df400['time'].astype(int)/60/60/24,df400['meanTopo'],lw=2,ls='-.',c=sc[0])
-    ax1.plot(-df525['time'].astype(int)/60/60/24,df525['meanTopo'],lw=2,ls='-.',c=sc[1])
-    ax1.plot(-df650['time'].astype(int)/60/60/24,df650['meanTopo'],lw=2,ls='-.',c=sc[2])
+    ax1.plot(-df400['time'].astype(int)/60/60,df400['meanTopo'],lw=2,ls='-.',c=sc[0])
+    ax1.plot(-df525['time'].astype(int)/60/60,df525['meanTopo'],lw=2,ls='-.',c=sc[1])
+    ax1.plot(-df650['time'].astype(int)/60/60,df650['meanTopo'],lw=2,ls='-.',c=sc[2])
 
 
     ax1.grid(True)
     ax1.set_ylabel('m asl')
     ax1.set_ylim(bottom=0)
-    ax1.set_xlim(0,3)
+    ax1.set_xlim(1,72)
+    ax1.set_xticks([12,24,36,48,60,72]) 
     ax1.legend(loc='upper right',fontsize=26)
-    ax1.set_xlabel('Days before release')
+    ax1.set_xlabel('Hours before release')
     fig.tight_layout()
 
     # Save plot
