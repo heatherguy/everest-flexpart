@@ -54,7 +54,7 @@ for i in range(0,len(release_times)):
     mean_df = all_dat[all_dat.columns[0:len(col_headers)]]
     mean_df.columns = col_headers
     
-    f = open(out_dir + 'tdump_%s'%(rt),'w')
+    f = open(out_dir + 'tdump%s'%(rt),'w')
     
     # number of meteorological grids used in calculation
     f.write('     1     1\n')    
