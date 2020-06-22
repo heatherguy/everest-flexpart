@@ -26,11 +26,10 @@ widths = mean_widths + cluster_widths * nclusters
 
 
 
-# Get event files
-base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-out_dir='/Users/heather/Desktop/Everest/everest-flexpart/endpoints/'
-#base_dir='/nobackup/eehgu/everest-flexpart/events/'
-#out_dir='/nobackup/eehgu/everest-flexpart/events/endpoints/'
+# Get event filesbase_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+#out_dir='/Users/heather/Desktop/Everest/everest-flexpart/endpoints/'
+base_dir='/nobackup/eehgu/everest-flexpart/events/'
+out_dir='/nobackup/eehgu/everest-flexpart/events/endpoints/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
@@ -74,7 +73,7 @@ for i in range(0,len(release_times)):
     # Traj number, met grid number, year, month, day, hour, minute, forecast hour, age of traj in hours, latitude, longitude, height in meters above ground, n diagnostic variables (1st is always pressure)
     for j in range(0,len(mean_df)):
         traj_time = rt_dt + dt.timedelta(seconds=int(mean_df['time'].iloc[j]))
-        f.write('     1     1    %s    %s     %s     %s     %s    0     %s   %s   %s   %s  \n'%(str(traj_time.year)[-2:],str(traj_time.month).zfill(2),str(traj_time.day).zfill(2),str(traj_time.hour).zfill(2),str(traj_time.minute).zfill(2),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
+        f.write('     1     1    %s    %s     %s     %s     %s    0     %s   %s   %s   %s  \n'%(str(traj_time.year)[-2:],str(traj_time.month).zfill(2),str(traj_time.day).zfill(2),str(traj_time.hour).zfill(2),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
             
     
     f.close()
