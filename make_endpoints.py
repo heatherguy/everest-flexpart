@@ -60,13 +60,13 @@ for i in range(0,len(release_times)):
     f.write('     1     1\n')    
 
     # Meteorological Model identification, Date file starting year, month, day , hour, forecast hour
-    f.write('   ERA5     %s    %s     %s     %s    0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour) ))
+    f.write('    ERA5%6s%6s%6s%6s     0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour) ))
             
     # Number of trajectories in file, direction, vertical motion calculation method
     f.write('     1 BACKWARD  OMEGA  \n')
     
     # starting year, month, day, hour, latitude, longitude, level above ground (m)
-    f.write('    %s    %s     %s     %s   %s  %s   %s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
+    f.write('%6s%6s%6s%6s%10s%10s%8s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
             
     # number of output variables, identification of each variable
     f.write('     1 PRESSURE\n')#('     1 PRESSURE')
