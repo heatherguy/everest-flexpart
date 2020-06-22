@@ -66,7 +66,7 @@ for i in range(0,len(release_times)):
     f.write('     1 BACKWARD  OMEGA  \n')
     
     # starting year, month, day, hour, latitude, longitude, level above ground (m)
-    f.write('%6s%6s%6s%6s%8s%8s%8s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
+    f.write('%6s%6s%6s%6s%8s%8s%8s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,'4000'))
             
     # number of output variables, identification of each variable
     f.write('     1 PRESSURE\n')#('     1 PRESSURE')
