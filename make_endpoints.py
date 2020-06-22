@@ -15,8 +15,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 run_length = 72 # hours
-sum_lat = 27.85
-sum_lon = 86.75 
+sum_lat = 27.850
+sum_lon = 86.750
 col_headers = ['time','meanLon','meanLat','meanZ','meanTopo','meanPBL','meanTropo','meanPv','rmsHBefore','rmsHAfter','rmsVBefore','rmsVAfter','pblFract','pv2Fract','tropoFract']
 nclusters=5
 mean_widths = [5,8,9,9,8,8,8,8,8,8,8,8,8,6,6,6]
@@ -71,11 +71,11 @@ for i in range(0,len(release_times)):
     # number of output variables, identification of each variable
     f.write('     1 PRESSURE\n')#('     1 PRESSURE')
     # Traj number, met grid number, year, month, day, hour, minute, forecast hour, age of traj in hours, latitude, longitude, height in meters above ground, n diagnostic variables (1st is always pressure)
-    f.write( '     1     1%6s%6s%6s%6s%6s     0%9s%9s%9s%9s     0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),str(rt_dt.minute),'0.0',sum_lat,sum_lon,mean_df['meanZ'].iloc[0]))
+    f.write( '     1     1%6s%6s%6s%6s%6s     0%9s%9.3f%9.3f%9s     0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),str(rt_dt.minute),'0.0',sum_lat,sum_lon,mean_df['meanZ'].iloc[0]))
     
     for j in range(0,len(mean_df)):
         traj_time = rt_dt + dt.timedelta(seconds=int(mean_df['time'].iloc[j]))
-        f.write( '     1     1%6s%6s%6s%6s%6s     0%9s%9s%9s%9s     0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
+        f.write( '     1     1%6s%6s%6s%6s%6s     0%9s%9.3f%9.3f%9s     0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
     
     f.close()
      
