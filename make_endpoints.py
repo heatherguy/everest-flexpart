@@ -66,7 +66,7 @@ for i in range(0,len(release_times)):
     f.write('     1 BACKWARD  OMEGA  \n')
     
     # starting year, month, day, hour, latitude, longitude, level above ground (m)
-    f.write('%6s%6s%6s%6s%10s%10s%8s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
+    f.write('%6s%6s%6s%6s%8s%8s%8s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
             
     # number of output variables, identification of each variable
     f.write('     1 PRESSURE\n')#('     1 PRESSURE')
@@ -75,7 +75,7 @@ for i in range(0,len(release_times)):
     
     for j in range(0,len(mean_df)):
         traj_time = rt_dt + dt.timedelta(seconds=int(mean_df['time'].iloc[j]))
-        f.write( '     1     1%6s%6s%6s%6s%6s     0%8s%8s%8s%8s     0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
+        f.write( '     1     1%6s%6s%6s%6s%6s     0%9s%9s%9s%9s     0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
     
     f.close()
      
