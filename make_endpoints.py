@@ -73,8 +73,7 @@ for i in range(0,len(release_times)):
     # Traj number, met grid number, year, month, day, hour, minute, forecast hour, age of traj in hours, latitude, longitude, height in meters above ground, n diagnostic variables (1st is always pressure)
     for j in range(0,len(mean_df)):
         traj_time = rt_dt + dt.timedelta(seconds=int(mean_df['time'].iloc[j]))
-        f.write('     1     1    %s    %s     %s     %s     %s    0     %s   %s   %s   %s  0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
-            
+        f.write( '     1     1%6s%6s%6s%6s%6s     0%8s%8s%8s%8s     0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[0])/60/60,mean_df['meanLat'].iloc[0],mean_df['meanLon'].iloc[0],mean_df['meanZ'].iloc[0]))
     
     f.close()
      
