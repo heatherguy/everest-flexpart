@@ -60,20 +60,20 @@ for i in range(0,len(release_times)):
     f.write('     1     1\n')    
 
     # Meteorological Model identification, Date file starting year, month, day , hour, forecast hour
-    f.write('   ERA5     %s    %s     %s     %s    0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month).zfill(2),str(rt_dt.day).zfill(2),str(rt_dt.hour).zfill(2) ))
+    f.write('   ERA5     %s    %s     %s     %s    0\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour) ))
             
     # Number of trajectories in file, direction, vertical motion calculation method
     f.write('     1 BACKWARD  OMEGA  \n')
     
     # starting year, month, day, hour, latitude, longitude, level above ground (m)
-    f.write('    %s    %s     %s     %s   %s  %s   %s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month).zfill(2),str(rt_dt.day).zfill(2),str(rt_dt.hour).zfill(2),sum_lat,sum_lon,pressure))
+    f.write('    %s    %s     %s     %s   %s  %s   %s\n'%(str(rt_dt.year)[-2:],str(rt_dt.month),str(rt_dt.day),str(rt_dt.hour),sum_lat,sum_lon,pressure))
             
     # number of output variables, identification of each variable
-    f.write('     0         \n')#('     1 PRESSURE')
+    f.write('     1 PRESSURE\n')#('     1 PRESSURE')
     # Traj number, met grid number, year, month, day, hour, minute, forecast hour, age of traj in hours, latitude, longitude, height in meters above ground, n diagnostic variables (1st is always pressure)
     for j in range(0,len(mean_df)):
         traj_time = rt_dt + dt.timedelta(seconds=int(mean_df['time'].iloc[j]))
-        f.write('     1     1    %s    %s     %s     %s     %s    0     %s   %s   %s   %s  \n'%(str(traj_time.year)[-2:],str(traj_time.month).zfill(2),str(traj_time.day).zfill(2),str(traj_time.hour).zfill(2),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
+        f.write('     1     1    %s    %s     %s     %s     %s    0     %s   %s   %s   %s  0\n'%(str(traj_time.year)[-2:],str(traj_time.month),str(traj_time.day),str(traj_time.hour),str(traj_time.minute),np.abs(mean_df['time'].iloc[j])/60/60,mean_df['meanLat'].iloc[j],mean_df['meanLon'].iloc[j],mean_df['meanZ'].iloc[j]))
             
     
     f.close()
