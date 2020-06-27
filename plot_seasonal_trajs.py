@@ -63,7 +63,7 @@ end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.
 pressure=650
 all_cubes=[]
 JJAS_cubes=[]
-SO_cubes=[]
+ON_cubes=[]
 DJF_cubes=[]
 M_cubes=[]
 
@@ -87,8 +87,8 @@ for i in range(0,len(release_times)):
     
     if rt[4:6] in ['06','07','08','09']:
         JJAS_cubes.append(mean_df)
-    elif rt[4:6] in ['09','10']:
-        SO_cubes.append(mean_df)
+    elif rt[4:6] in ['10','11']:
+        ON_cubes.append(mean_df)
     elif rt[4:6] in ['12','01','02']:
         DJF_cubes.append(mean_df)
     elif rt[4:6] in ['03']:
@@ -244,20 +244,20 @@ gl1.yformatter = LATITUDE_FORMATTER
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 
 # Plot retroplume centroid (mean trajectory)
-for i in range(0,len(SO_cubes)):
-    mean_df=SO_cubes[i]
+for i in range(0,len(ON_cubes)):
+    mean_df=ON_cubes[i]
     ax1.plot(mean_df['meanLon'], mean_df['meanLat'], transform=ccrs.PlateCarree(),zorder=20,lw=1,c='gray')
 
 #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 #cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('SO, n=%s'%len(SO_cubes))
+ax1.set_title('ON, n=%s'%len(ON_cubes))
 
 fig.tight_layout()
 
 
 # Save plot
-save_loc = base_dir + 'out_figures/SO_traj.png' 
-print('Saving SO plumes')
+save_loc = base_dir + 'out_figures/ON_traj.png' 
+print('Saving ON plumes')
 fig.savefig(save_loc)
 
 plt.close(fig)

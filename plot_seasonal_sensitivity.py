@@ -60,7 +60,7 @@ end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.
 pressure=650
 all_cubes=[]
 JJAS_cubes=[]
-SO_cubes=[]
+ON_cubes=[]
 DJF_cubes=[]
 M_cubes=[]
 
@@ -105,8 +105,8 @@ for i in range(0,len(release_times)):
     
         if rt[4:6] in ['06','07','08','09']:
             JJAS_cubes.append(temp)
-        elif rt[4:6] in ['09','10']:
-            SO_cubes.append(temp)
+        elif rt[4:6] in ['10','11']:
+            ON_cubes.append(temp)
         elif rt[4:6] in ['12','01','02']:
             DJF_cubes.append(temp)
         elif rt[4:6] in ['03']:
@@ -209,7 +209,7 @@ fig.clf()
 # Make figure - SO
 
 # Sum all plumes
-sumso = np.sum(SO_cubes,axis=0)
+sumso = np.sum(ON_cubes,axis=0)
 #convert to percentage of max
 sumso = (sumso / np.max(sumso)) * 100
 
@@ -233,14 +233,14 @@ contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('SO events, n=%s'%len(SO_cubes))
+ax1.set_title('ON events, n=%s'%len(ON_cubes))
 
 fig.tight_layout()
 
 
 # Save plot
-save_loc = base_dir + 'out_figures/SO_gridded.png' 
-print('Saving SO')
+save_loc = base_dir + 'out_figures/ON_gridded.png' 
+print('Saving ON')
 fig.savefig(save_loc)
 
 plt.close(fig)
