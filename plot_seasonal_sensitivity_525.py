@@ -318,7 +318,7 @@ contour_plot1 = ax1.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
 cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('M events, n=%s, end level= %s hPa'%(len(M_cubes),,pressure))
+ax1.set_title('M events, n=%s, end level= %s hPa'%(len(M_cubes),pressure))
 
 fig.tight_layout()
 
