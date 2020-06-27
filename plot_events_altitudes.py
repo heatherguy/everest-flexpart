@@ -94,7 +94,7 @@ for i in range(0,len(release_times)):
     ax1.grid(True)
     ax1.set_ylabel('m asl')
     ax1.set_ylim(bottom=0)
-    ax1.set_xlim(1,72)
+    ax1.set_xlim(0,72)
     ax1.set_xticks([12,24,36,48,60,72]) 
     ax1.legend(loc='upper right',fontsize=26)
     ax1.set_xlabel('Hours before release')
