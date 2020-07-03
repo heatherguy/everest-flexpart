@@ -57,7 +57,7 @@ release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressure=650
+pressure=525
 all_cubes=[]
 JJAS_cubes=[]
 ON_cubes=[]
@@ -173,7 +173,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot1 = ax2.contourf(lon_vals, lat_vals,sumon,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot1 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 ax2.text(88,41,'ON, n=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
@@ -192,7 +192,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot1 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot1 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 ax3.text(88,41,'DJF, n=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
@@ -226,7 +226,7 @@ fig.tight_layout()
 
 
 # Save plot
-save_loc = base_dir + 'out_figures/seasonal_fourpanel.png' 
+save_loc = base_dir + 'out_figures/seasonal_fourpanel_%s.png'%pressure 
 print('Saving Jfour panel')
 fig.savefig(save_loc)
 
