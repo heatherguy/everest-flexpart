@@ -36,7 +36,7 @@ RUN_LEN=259200
 DATA_TYPE='ea'
 
 # get number of job types / names:
-NUM_JOB_NAMES=$((${#JOBS_NAME[@]} - 1))
+NUM_JOB_NAMES=$((${#JOBS_NAME[@]}))
 
 # for each job type:
 for i in $(seq 0 ${NUM_JOB_NAMES})

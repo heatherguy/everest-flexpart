@@ -57,7 +57,7 @@ release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressure=525
+pressure=650
 all_cubes=[]
 JJAS_cubes=[]
 ON_cubes=[]
@@ -121,15 +121,19 @@ for i in range(0,len(release_times)):
 
 
 # Sum all plumes
+print('summing jjas, n cubes = %s'%len(JJAS_cubes))
 sumjjas = np.sum(JJAS_cubes,axis=0)
 sumjjas = (sumjjas / np.max(sumjjas)) * 100
 
+print('summing on, n cubes = %s'%len(ON_cubes))
 sumso = np.sum(ON_cubes,axis=0)
 sumso = (sumso / np.max(sumso)) * 100
 
+print('summing djf, n cubes = %s'%len(DJF_cubes))
 sumdjf = np.sum(DJF_cubes,axis=0)
 sumdjf = (sumdjf / np.max(sumdjf)) * 100
 
+print('summing m, n cubes = %s'%len(M_cubes))
 summ = np.sum(M_cubes,axis=0)
 summ = (summ / np.max(summ)) * 100
 
@@ -173,7 +177,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-contour_plot1 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 ax2.text(88,41,'ON, n=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
@@ -192,7 +196,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-contour_plot1 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot3 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 ax3.text(88,41,'DJF, n=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
@@ -211,7 +215,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot1 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax4.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
 ax4.text(88,41,'M, n=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
