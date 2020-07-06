@@ -1,8 +1,8 @@
 #!/bin/bash
 #$ -cwd -V
-#$ -l h_rt=0:20:00
+#$ -l h_rt=0:30:00
 #$ -pe smp 1
-#$ -l h_vmem=16G
+#$ -l h_vmem=24G
 
 # print the date:
 date
