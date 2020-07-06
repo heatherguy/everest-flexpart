@@ -28,8 +28,8 @@ widths = mean_widths + cluster_widths * nclusters
 
 # Get event filesbase_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
 #out_dir='/Users/heather/Desktop/Everest/everest-flexpart/endpoints/'
-base_dir='/nobackup/eehgu/everest-flexpart/events_masl/'
-out_dir='/nobackup/eehgu/everest-flexpart/events_masl/endpoints/'
+base_dir='/nobackup/eehgu/everest-flexpart/events_nosubgrid/'
+out_dir='/nobackup/eehgu/everest-flexpart/events_nosubgrid/endpoints/'
 
 #release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 release_times = list(set([x[-38:-24] for x in glob.glob(base_dir +'20*')]))
