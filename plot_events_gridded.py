@@ -37,8 +37,13 @@ rcParams['ytick.major.pad']='8'
 
 
 run_length = 72 # hours
-sum_lat = 27.85
-sum_lon = 86.75 
+#sum_lat = 27.85
+#sum_lon = 86.75 
+
+sum_lat = 27.9952
+sum_lon = 86.8406
+
+
 #levels = [0.1,0.3,0.8,2,6,20,50,150,400]
 levels = [0.001,0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5, 10, 25, 50, 100]
 
@@ -52,21 +57,24 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 
 # Get event files
 #base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-base_dir='/nobackup/eehgu/everest-flexpart/events/'
+base_dir='/nobackup/eehgu/everest-flexpart/April17/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
+#end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=48)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressures=[650,525,400]
+
+#pressures=[650,525,400]
+pressures=[500,400,300]
 
 for i in range(0,len(release_times)):
     rt = release_times[i]
     et = end_times[i]
     
-    gf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/grid_time_%s.nc'%rt
-    gf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,525) + 'output/grid_time_%s.nc'%rt
-    gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,650) + 'output/grid_time_%s.nc'%rt
+    gf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,300) + 'output/grid_time_%s.nc'%rt
+    gf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/grid_time_%s.nc'%rt
+    gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,500) + 'output/grid_time_%s.nc'%rt
         
     # load netcdf data using iris:
     try:
@@ -140,7 +148,7 @@ for i in range(0,len(release_times)):
     ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
     cb1.ax.set_ylabel('Emission sensitivity (%)')
-    ax1.set_title('%s: 650 hPa release'%rt)
+    ax1.set_title('%s: 500 hPa release'%rt)
 
 
     ax2 = plt.subplot(1, 3, 2, projection=ccrs.Mercator(central_longitude=86.9))
@@ -161,7 +169,7 @@ for i in range(0,len(release_times)):
     ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb2 = plt.colorbar(contour_plot2, ax=ax2, shrink=0.8)
     cb2.ax.set_ylabel('Emission sensitivity (%)')
-    ax2.set_title('%s: 525 hPa release'%rt)
+    ax2.set_title('%s: 300 hPa release'%rt)
 
 
     ax3 = plt.subplot(1, 3, 3, projection=ccrs.Mercator(central_longitude=86.9))
@@ -182,7 +190,7 @@ for i in range(0,len(release_times)):
     ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
     cb3 = plt.colorbar(contour_plot3, ax=ax3, shrink=0.8)
     cb3.ax.set_ylabel('Emission sensitivity (%)')
-    ax3.set_title('%s: 400 hPa release'%rt)
+    ax3.set_title('%s: 300 hPa release'%rt)
 
     fig.tight_layout()
 

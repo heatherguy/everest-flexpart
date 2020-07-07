@@ -37,8 +37,12 @@ rcParams['ytick.major.pad']='8'
 
 
 run_length = 72 # hours
-sum_lat = 27.85
-sum_lon = 86.75 
+#sum_lat = 27.85
+#sum_lon = 86.75 
+sum_lat = 27.9952
+sum_lon = 86.8406
+
+
 col_headers = ['time','meanLon','meanLat','meanZ','meanTopo','meanPBL','meanTropo','meanPv','rmsHBefore','rmsHAfter','rmsVBefore','rmsVAfter','pblFract','pv2Fract','tropoFract']
 nclusters=5
 mean_widths = [5,8,9,9,8,8,8,8,8,8,8,8,8,6,6,6]
@@ -50,13 +54,13 @@ col_map = [plt.cm.jet((i / len(levs))) for i in range(len(levs))]
 
 # Get event files
 #base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-base_dir='/nobackup/eehgu/everest-flexpart/events/'
+base_dir='/nobackup/eehgu/everest-flexpart/April17/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressures=[650, 525, 400]
+pressures=[500, 400, 300]
 
 for i in range(0,len(release_times)):
     rt = release_times[i]
