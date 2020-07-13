@@ -31,7 +31,7 @@ hfont = {'fontname':'Helvetica'}
 # Plotting preferences:
 rcParams['xtick.direction'] = 'in'
 rcParams['ytick.direction'] = 'in'
-rcParams.update({'font.size': 11}) 
+rcParams.update({'font.size': 10}) 
 rcParams['axes.titlepad'] = 42 
 rcParams['xtick.major.pad']='8'
 rcParams['ytick.major.pad']='8'
@@ -162,7 +162,7 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumjjas,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
-ax1.text(80,39,'JJAS, N=%s'%len(JJAS_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
+ax1.text(79,39,'JJAS, N=%s'%len(JJAS_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 
@@ -182,7 +182,7 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax2.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
-ax2.text(80,39,'ON, N=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
+ax2.text(79,39,'ON, N=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 ax3 = plt.subplot(2, 2, 3, projection=ccrs.Mercator(central_longitude=86.9))
@@ -199,9 +199,9 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot3 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot3 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax3.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
-ax3.text(80,39,'DJF, N=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
+ax3.text(79,39,'DJF, N=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 ax4 = plt.subplot(2, 2, 4, projection=ccrs.Mercator(central_longitude=86.9))
@@ -220,7 +220,7 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax4.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
-ax4.text(80,39,'M, N=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
+ax4.text(79,39,'M, N=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 cbar_ax = fig.add_axes([0.13, 0.09, 0.75, 0.03])#0.02-0.05
