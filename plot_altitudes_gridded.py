@@ -54,13 +54,13 @@ col_map = [plt.cm.jet((i / len(levs))) for i in range(len(levs))]
 
 # Get event files
 #base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-base_dir='/nobackup/eehgu/everest-flexpart/April17/'
+base_dir='/nobackup/eehgu/everest-flexpart/Fani/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressures=[500, 400, 300]
+pressures=[600, 500, 400]
 
 for i in range(0,len(release_times)):
     rt = release_times[i]
