@@ -8,7 +8,7 @@ Created on Sun Jun 14 21:25:39 2020
 
 import pandas as pd
 import numpy as np
-from matplotlib import rcParams
+from matplotlib import rcParams, rc
 import matplotlib.pyplot as plt
 import datetime as dt
 import glob as glob
@@ -25,15 +25,18 @@ import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import matplotlib.path as mpath
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+hfont = {'fontname':'Helvetica'}
 
 
 # Plotting preferences:
 rcParams['xtick.direction'] = 'in'
 rcParams['ytick.direction'] = 'in'
-rcParams.update({'font.size': 30}) 
+rcParams.update({'font.size': 11}) 
 rcParams['axes.titlepad'] = 42 
 rcParams['xtick.major.pad']='8'
 rcParams['ytick.major.pad']='8'
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+
 
 
 run_length = 72 # hours
@@ -50,8 +53,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 
 
 # Get event files
-#base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-base_dir='/nobackup/eehgu/everest-flexpart/events/'
+base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+#base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
@@ -141,7 +144,7 @@ summ = (summ / np.max(summ)) * 100
 
 
 
-fig = plt.figure(figsize=[35, 30])
+fig = plt.figure(figsize=[8, 6])
 
 ax1 = plt.subplot(2, 2, 1, projection=ccrs.Mercator(central_longitude=86.9))
 ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
@@ -158,8 +161,8 @@ gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumjjas,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
-ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-ax1.text(88,41,'JJAS, n=%s'%len(JJAS_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
+ax1.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
+ax1.text(80,39,'JJAS, N=%s'%len(JJAS_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 
@@ -177,9 +180,9 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
-ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-ax2.text(88,41,'ON, n=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
+#contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+ax2.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
+ax2.text(80,39,'ON, N=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 ax3 = plt.subplot(2, 2, 3, projection=ccrs.Mercator(central_longitude=86.9))
@@ -196,9 +199,9 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-contour_plot3 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
-ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-ax3.text(88,41,'DJF, n=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
+#contour_plot3 = ax3.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+ax3.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
+ax3.text(80,39,'DJF, N=%s'%len(DJF_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
 
 ax4 = plt.subplot(2, 2, 4, projection=ccrs.Mercator(central_longitude=86.9))
@@ -215,24 +218,25 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
-ax4.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-ax4.text(88,41,'M, n=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
+#contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+ax4.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
+ax4.text(80,39,'M, N=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
+#cbar_ax = fig.add_axes([0.15, 0.07, 0.75, 0.02])#0.02-0.05
 
+cbar_ax = fig.add_axes([0.13, 0.09, 0.75, 0.03])#0.02-0.05
 
-fig.subplots_adjust(top=0.8)
-cbar_ax = fig.add_axes([0.15, 0.05, 0.75, 0.02])
 cb1=fig.colorbar(contour_plot1, cax=cbar_ax,orientation='horizontal')
-cb1.ax.set_xlabel('Emission sensitivity (%)')
+cb1.ax.set_xlabel('EMISSION SENSITIVY (%)',**hfont)
 
+fig.subplots_adjust(bottom=0.2)
 fig.tight_layout()
 
 
 # Save plot
-save_loc = base_dir + 'out_figures/seasonal_fourpanel_%s_a.png'%pressure 
+save_loc = base_dir + 'out_figures/seasonal_fourpanel_%s_a.tiff'%pressure 
 print('Saving Jfour panel')
-fig.savefig(save_loc)
+fig.savefig(save_loc,dpi=300,format='tiff')
 
 plt.close(fig)
 fig.clf()
