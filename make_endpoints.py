@@ -32,15 +32,15 @@ widths = mean_widths + cluster_widths * nclusters
 
 # Get event filesbase_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
 #out_dir='/Users/heather/Desktop/Everest/everest-flexpart/endpoints/'
-base_dir='/nobackup/eehgu/everest-flexpart/April17/'
-out_dir='/nobackup/eehgu/everest-flexpart/April17/endpoints/'
+base_dir='/nobackup/eehgu/everest-flexpart/events_9000/'
+out_dir='/nobackup/eehgu/everest-flexpart/events_9000/endpoints/'
 
-release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
-#release_times = list(set([x[-38:-24] for x in glob.glob(base_dir +'20*')]))
+#release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
+release_times = list(set([x[-38:-24] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
 end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.timedelta(hours=72)),'%Y%m%d%H%M%S') for rt in release_times]
 
-pressure=500
+pressure=9000
 
 for i in range(0,len(release_times)):
     rt = release_times[i]

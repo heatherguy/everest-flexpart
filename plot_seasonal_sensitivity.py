@@ -142,9 +142,10 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumall,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('All events, n=%s'%len(all_cubes))
+#cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+#cb1.ax.set_ylabel('Emission sensitivity (%)')
+#ax1.set_title('All events, n=%s'%len(all_cubes))
+ax1.text(88,41,'All events, n=%s'%len(all_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
 fig.tight_layout()
 
@@ -187,9 +188,11 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumjjas,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('JJAS events, n=%s'%len(JJAS_cubes))
+#cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+#cb1.ax.set_ylabel('Emission sensitivity (%)')
+#ax1.set_title('JJAS events, n=%s'%len(JJAS_cubes))
+#ax1.text(88,41,'JJAS, n=%s'%len(JJAS_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
+
 
 fig.tight_layout()
 
@@ -231,9 +234,10 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('ON events, n=%s'%len(ON_cubes))
+#cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+#cb1.ax.set_ylabel('Emission sensitivity (%)')
+#ax1.set_title('ON events, n=%s'%len(ON_cubes))
+#ax1.text(88,41,'ON, n=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9))
 
 fig.tight_layout()
 
@@ -275,9 +279,9 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumdjf,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('DJF events, n=%s'%len(DJF_cubes))
+#cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+#cb1.ax.set_ylabel('Emission sensitivity (%)')
+#ax1.set_title('DJF events, n=%s'%len(DJF_cubes))
 
 fig.tight_layout()
 
@@ -316,9 +320,9 @@ gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-cb1.ax.set_ylabel('Emission sensitivity (%)')
-ax1.set_title('M events, n=%s'%len(M_cubes))
+#cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+#cb1.ax.set_ylabel('Emission sensitivity (%)')
+#ax1.set_title('M events, n=%s'%len(M_cubes))
 
 fig.tight_layout()
 

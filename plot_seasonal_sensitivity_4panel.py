@@ -230,7 +230,7 @@ fig.tight_layout()
 
 
 # Save plot
-save_loc = base_dir + 'out_figures/seasonal_fourpanel_%s.png'%pressure 
+save_loc = base_dir + 'out_figures/seasonal_fourpanel_%s_a.png'%pressure 
 print('Saving Jfour panel')
 fig.savefig(save_loc)
 
