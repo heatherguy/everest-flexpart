@@ -53,8 +53,8 @@ land_50m = cfeature.NaturalEarthFeature('physical', 'land', '50m',
 
 
 # Get event files
-base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
-#base_dir='/nobackup/eehgu/everest-flexpart/events/'
+#base_dir='/Users/heather/Desktop/Everest/everest-flexpart/'
+base_dir='/nobackup/eehgu/everest-flexpart/events/'
 
 release_times = list(set([x[-37:-23] for x in glob.glob(base_dir +'20*')]))
 #end_times = list(set([x[-22:-8] for x in glob.glob(base_dir +'20*')]))
@@ -180,7 +180,7 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot2 = ax2.contourf(lon_vals, lat_vals,sumso,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax2.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
 ax2.text(80,39,'ON, N=%s'%len(ON_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
@@ -218,11 +218,10 @@ gl1.ylocator = mticker.FixedLocator([0,10,20,30,40,50])
 gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
-#contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
+contour_plot4 = ax4.contourf(lon_vals, lat_vals,summ,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
 ax4.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
 ax4.text(80,39,'M, N=%s'%len(M_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
 
-#cbar_ax = fig.add_axes([0.15, 0.07, 0.75, 0.02])#0.02-0.05
 
 cbar_ax = fig.add_axes([0.13, 0.09, 0.75, 0.03])#0.02-0.05
 
