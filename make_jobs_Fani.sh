@@ -16,7 +16,7 @@ IND_RECEPTOR[0]='1'
 OUT_HEIGHTS[0]='15, 50, 100, 150, 250, 350, 450, 650, 750, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000'
 
 # particle release heights:
-REL_HEIGHTS='600 500 400'
+REL_HEIGHTS='500 400 300'
 
 # template directory:
 #TEMPL_DIR=$(dirname $(readlink -f ${0}))/../templates/events

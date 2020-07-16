@@ -31,7 +31,7 @@ hfont = {'fontname':'Helvetica'}
 # Plotting preferences:
 rcParams['xtick.direction'] = 'in'
 rcParams['ytick.direction'] = 'in'
-rcParams.update({'font.size': 10}) 
+rcParams.update({'font.size': 14}) 
 rcParams['axes.titlepad'] = 42 
 rcParams['xtick.major.pad']='8'
 rcParams['ytick.major.pad']='8'
@@ -134,9 +134,9 @@ gl1.xformatter = LONGITUDE_FORMATTER
 gl1.yformatter = LATITUDE_FORMATTER
 
 contour_plot1 = ax1.contourf(lon_vals, lat_vals,sumall,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
-ax1.plot(sum_lon, sum_lat, 'kx',markersize=5, transform=ccrs.PlateCarree(),zorder=30)
-ax1.text(75,39,'All events, N=%s'%len(all_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
-
+ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
+#ax1.text(75,39,'All events, N=%s'%len(all_cubes),transform=ccrs.PlateCarree(),bbox=dict(facecolor='white', alpha=0.9),**hfont)
+#
 
 
 #cbar_ax = fig.add_axes([0.13, 0.09, 0.75, 0.03])#0.02-0.05
