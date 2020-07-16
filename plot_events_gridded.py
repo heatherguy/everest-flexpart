@@ -8,7 +8,7 @@ Created on Sun Jun 14 21:25:39 2020
 
 import pandas as pd
 import numpy as np
-from matplotlib import rcParams
+from matplotlib import rcParams, rc
 import matplotlib.pyplot as plt
 import datetime as dt
 import glob as glob
@@ -25,15 +25,17 @@ import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import matplotlib.path as mpath
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+hfont = {'fontname':'Helvetica'}
 
 
 # Plotting preferences:
 rcParams['xtick.direction'] = 'in'
 rcParams['ytick.direction'] = 'in'
-rcParams.update({'font.size': 22}) 
-rcParams['axes.titlepad'] = 22 
+rcParams.update({'font.size': 10}) 
+rcParams['axes.titlepad'] = 42 
 rcParams['xtick.major.pad']='8'
 rcParams['ytick.major.pad']='8'
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
 
 run_length = 72 # hours
@@ -66,15 +68,15 @@ end_times = [dt.datetime.strftime((dt.datetime.strptime(rt,'%Y%m%d%H%M%S') - dt.
 
 
 #pressures=[650,525,400]
-pressures=[600,500,400]
+pressures=[500,400,300]
 
 for i in range(0,len(release_times)):
     rt = release_times[i]
     et = end_times[i]
     
-    gf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/grid_time_%s.nc'%rt
-    gf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,500) + 'output/grid_time_%s.nc'%rt
-    gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,600) + 'output/grid_time_%s.nc'%rt
+    gf_400 = base_dir + '%s-%s_REL_%s/'%(rt,et,300) + 'output/grid_time_%s.nc'%rt
+    gf_525 = base_dir + '%s-%s_REL_%s/'%(rt,et,400) + 'output/grid_time_%s.nc'%rt
+    gf_650 = base_dir + '%s-%s_REL_%s/'%(rt,et,500) + 'output/grid_time_%s.nc'%rt
         
     # load netcdf data using iris:
     try:
@@ -128,7 +130,7 @@ for i in range(0,len(release_times)):
 
     # Make figure
 
-    fig = plt.figure(figsize=[40, 10])
+    fig = plt.figure(figsize=[12, 5])
 
     ax1 = plt.subplot(1, 3, 1, projection=ccrs.Mercator(central_longitude=86.9))
     ax1.set_extent([sum_lon-40, 100, sum_lat-20, sum_lat + 15], ccrs.PlateCarree())
@@ -146,9 +148,9 @@ for i in range(0,len(release_times)):
 
     contour_plot1 = ax1.contourf(lon_vals, lat_vals,sum_650,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax1.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-    cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
-    cb1.ax.set_ylabel('Emission sensitivity (%)')
-    ax1.set_title('%s: 600 hPa release'%rt)
+    #cb1 = plt.colorbar(contour_plot1, ax=ax1, shrink=0.8)
+    #cb1.ax.set_ylabel('Emission sensitivity (%)')
+    ax1.set_title('%s: 500 hPa release'%rt)
 
 
     ax2 = plt.subplot(1, 3, 2, projection=ccrs.Mercator(central_longitude=86.9))
@@ -167,9 +169,9 @@ for i in range(0,len(release_times)):
 
     contour_plot2 = ax2.contourf(lon_vals, lat_vals,sum_525,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax2.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-    cb2 = plt.colorbar(contour_plot2, ax=ax2, shrink=0.8)
-    cb2.ax.set_ylabel('Emission sensitivity (%)')
-    ax2.set_title('%s: 500 hPa release'%rt)
+    #cb2 = plt.colorbar(contour_plot2, ax=ax2, shrink=0.8)
+    #cb2.ax.set_ylabel('Emission sensitivity (%)')
+    ax2.set_title('%s: 400 hPa release'%rt)
 
 
     ax3 = plt.subplot(1, 3, 3, projection=ccrs.Mercator(central_longitude=86.9))
@@ -188,18 +190,25 @@ for i in range(0,len(release_times)):
 
     contour_plot3 = ax3.contourf(lon_vals, lat_vals,sum_400,transform=ccrs.PlateCarree(),zorder=10,alpha=0.5,levels=levels,extend='max',colors=col_map)#,vmin=0, vmax=100, zorder=10, alpha=0.9,extend='min')
     ax3.plot(sum_lon, sum_lat, 'kx',markersize=10, transform=ccrs.PlateCarree(),zorder=30)
-    cb3 = plt.colorbar(contour_plot3, ax=ax3, shrink=0.8)
-    cb3.ax.set_ylabel('Emission sensitivity (%)')
-    ax3.set_title('%s: 400 hPa release'%rt)
+    #cb3 = plt.colorbar(contour_plot3, ax=ax3, shrink=0.8)
+    #cb3.ax.set_ylabel('Emission sensitivity (%)')
+    ax3.set_title('%s: 300 hPa release'%rt)
 
+  
+    cbar_ax = fig.add_axes([0.13, 0.09, 0.75, 0.03])#0.02-0.05
+
+    cb1=fig.colorbar(contour_plot1, cax=cbar_ax,orientation='horizontal')
+    cb1.ax.set_xlabel('EMISSION SENSITIVY (%)',**hfont)
+
+    fig.subplots_adjust(bottom=0.2)
     fig.tight_layout()
 
 
 
     # Save plot
-    save_loc = base_dir + 'out_figures/%s_gridded.png'%rt 
+    save_loc = base_dir + 'out_figures/%s_gridded.tiff'%rt 
     print('Saving %s'%rt)
-    fig.savefig(save_loc)
+    fig.savefig(save_loc,dpi=300,format='tiff')
 
     plt.close(fig)
     fig.clf()
